@@ -137,44 +137,44 @@ class UpcomingViewCell: UITableViewCell {
         
         self.contentView.backgroundColor = .customBlack
         
-        hierarchy()
-        setupUI()
+//        hierarchy()
+//        setupUI()
     }
     
-    func setupUI(){
-        setConstraints()
-        
-    }
-    
-    func hierarchy(){
-        contentView.addSubview(stackView)
-        stackView.addArrangedSubview(infoStackView)
-        
-        infoStackView.addArrangedSubview(seriesLabel)
-        
-    }
-    
-    func setConstraints(){
-        NSLayoutConstraint.activate([
-        
-            stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 18),
-            
-            stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 18),
-            
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: 18)
-        
-        ])
-    }
-    
-    override func layoutSubviews() {
-            super.layoutSubviews()
-            
-            self.contentView.layer.cornerRadius = 8
-            self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 40, left: 18, bottom: 40, right: 18))
-            
-        }
+//    func setupUI(){
+//        setConstraints()
+//        
+//    }
+//    
+//    func hierarchy(){
+//        contentView.addSubview(stackView)
+//        stackView.addArrangedSubview(infoStackView)
+//        
+//        infoStackView.addArrangedSubview(seriesLabel)
+//        
+//    }
+//    
+//    func setConstraints(){
+//        NSLayoutConstraint.activate([
+//        
+//            stackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 18),
+//            
+//            stackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 18),
+//            
+//            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            
+//            stackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: 18)
+//        
+//        ])
+//    }
+//    
+//    override func layoutSubviews() {
+//            super.layoutSubviews()
+//            
+//            self.contentView.layer.cornerRadius = 8
+//            self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 40, left: 18, bottom: 40, right: 18))
+//            
+//        }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
