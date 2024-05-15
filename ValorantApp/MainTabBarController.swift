@@ -10,18 +10,23 @@ import UIKit
 class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         //Cor do nome dos itens
         self.tabBar.tintColor = .mainRed
         
         //Cor da imagem do item
-        self.tabBar.barTintColor = .mainRed
+        self.tabBar.barTintColor = .customBlack
+        
+        self.tabBar.isTranslucent = false
         
         //Cor do fundo
         self.tabBar.backgroundColor = .customBlack
         
         configTabbars()
+        
+        
     }
     
     func configTabbars(){

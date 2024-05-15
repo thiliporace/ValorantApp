@@ -7,16 +7,39 @@
 
 import UIKit
 
-class UpcomingViewController: UIViewController, UITableViewDelegate {
+class UpcomingViewController: UIViewController {
+    
+    
+    var upcomingViewDataSource: UpcomingViewDataSource
+    var upcomingViewDelegate: UpcomingViewDelegate
     
     lazy var upcomingMatchModel: UpcomingMatchModel = {
         return UpcomingMatchModel(viewController: self)
     }()
     
-    let tableView = UITableView()
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .customBlack
+        collectionView.register(UpcomingViewCell.self, forCellWithReuseIdentifier: UpcomingViewCell.identifier)
+        return collectionView
+    }()
     
     let array: [String] = ["1","2","1","2","1","2","1","2","1","2"]
 
+    internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.upcomingViewDataSource = UpcomingViewDataSource(array: array)
+        self.upcomingViewDelegate = UpcomingViewDelegate()
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,8 +50,8 @@ class UpcomingViewController: UIViewController, UITableViewDelegate {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.collectionView.delegate = upcomingViewDelegate
+        self.collectionView.dataSource = upcomingViewDataSource
         setElements()
         
     }
@@ -45,25 +68,23 @@ class UpcomingViewController: UIViewController, UITableViewDelegate {
     }
     
     func setupTableView(){
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         
-        tableView.backgroundColor = .customBlack
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
         
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
         
-        tableView.register(UpcomingViewCell.self, forCellReuseIdentifier: "UpcomingViewCell")
+        
     }
     
     func fillText(){
@@ -75,25 +96,8 @@ class UpcomingViewController: UIViewController, UITableViewDelegate {
         
     }
 
-
 }
 
-extension UpcomingViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return array.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpcomingViewCell", for: indexPath) as? UpcomingViewCell else {
-          fatalError("The TableView could not dequeue a CustomCell in ViewController.")
-      }
-    
-      cell.set(seriesLabel: "teste", date: "teste", country_flag1: "teste", country_flag2: "teste", team_name1: "teste", team_name2: "teste", game_time: "teste", time_from_now: "teste")
-      cell.layer.cornerRadius = 8
-      cell.clipsToBounds = true
-    return cell
-  }
-}
 
 #Preview(){
     MainTabBarController()
