@@ -13,10 +13,6 @@ class UpcomingViewController: UIViewController {
     var upcomingViewDataSource: UpcomingViewDataSource
     var upcomingViewDelegate: UpcomingViewDelegate
     
-    lazy var upcomingMatchModel: UpcomingMatchModel = {
-        return UpcomingMatchModel(viewController: self)
-    }()
-    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -27,10 +23,18 @@ class UpcomingViewController: UIViewController {
         return collectionView
     }()
     
-    let array: [String] = ["1","2","1","2","1","2","1","2","1","2"]
+    var upcomingMatchModel = UpcomingMatchModel()
+    var matches = [UpcomingSegment]()
+    {
+        didSet{
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.upcomingViewDataSource = UpcomingViewDataSource(array: array)
+        self.upcomingViewDataSource = UpcomingViewDataSource(matches: matches)
         self.upcomingViewDelegate = UpcomingViewDelegate()
         
         super.init(nibName: nil, bundle: nil)
@@ -41,10 +45,14 @@ class UpcomingViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        receiveUpcomingMatches()
         
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
+        
+        navigationController?.navigationBar.barTintColor = .customBlack
         
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         
@@ -57,17 +65,17 @@ class UpcomingViewController: UIViewController {
     }
     
     func setElements(){
-        receiveUpcomingMatches()
-        fillText()
-        setupTableView()
+        setupCollectionView()
     }
     
     func receiveUpcomingMatches(){
-        
-        upcomingMatchModel.getMatches()
+        upcomingMatchModel.getMatches { matches in
+            self.matches = matches
+//            self.collectionView.reloadData()
+        }
     }
     
-    func setupTableView(){
+    func setupCollectionView(){
         view.addSubview(collectionView)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,20 +86,11 @@ class UpcomingViewController: UIViewController {
             
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 82),
             
             collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
-        
-        
-    }
-    
-    func fillText(){
-        print("alo")
-        for match in upcomingMatchModel.upcomingMatches {
-            print(match.team1)
-        }
         
         
     }

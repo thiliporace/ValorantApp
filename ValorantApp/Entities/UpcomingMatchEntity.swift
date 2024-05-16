@@ -14,7 +14,6 @@ struct UpcomingMatch: Codable {
 struct UpcomingMatchStruct: Codable {
     let status: Int
     let segments: [UpcomingSegment]
-    
 }
 
 struct UpcomingSegment: Codable, Hashable {

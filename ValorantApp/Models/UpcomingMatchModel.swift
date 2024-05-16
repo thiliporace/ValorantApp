@@ -13,13 +13,7 @@ class UpcomingMatchModel: NSObject{
     var names: [String] = []
     var error: MatchError?
     
-    weak var viewController: UpcomingViewController?
-    
-    init(viewController: UpcomingViewController) {
-       self.viewController = viewController
-    }
-    
-    func getMatches() {
+    func getMatches(completionHandler: @escaping ([UpcomingSegment]) -> Void) {
             guard let url = URL(string: "https://vlrggapi.vercel.app/match?q=upcoming") else { fatalError("Missing URL") }
             
             let urlRequest = URLRequest(url: url)
@@ -48,6 +42,8 @@ class UpcomingMatchModel: NSObject{
                         }
                     }
                 }
+                DispatchQueue.main.async { completionHandler(self.upcomingMatches) }
+//                completionHandler(self.upcomingMatches)
             }
             dataTask.resume()
         }

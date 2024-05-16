@@ -10,10 +10,10 @@ import UIKit
 
 class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    var array: [String]
+    var matches: [UpcomingSegment]
     
-    init(array: [String]) {
-        self.array = array
+    init(matches: [UpcomingSegment]) {
+        self.matches = matches
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -21,7 +21,8 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
             fatalError("The CollectionView could not dequeue a CustomCell in ViewController.")
         }
       
-        cell.set(seriesLabel: "view", date: "view", country_flag1: "flag_cn", country_flag2: "flag_cn", team_name1: "fun plus phoenx", team_name2: "fun plus phoenix ", game_time: "view", time_from_now: "view")
+        let match = self.matches[indexPath.row]
+        cell.set(seriesLabel: match.matchSeries, date: match.unixTimestamp, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: match.unixTimestamp, time_from_now: match.timeUntilMatch)
 //        cell.backgroundColor = .yellow
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
@@ -30,7 +31,7 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
     }
     
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return array.count
+    return matches.count
   }
 }
 

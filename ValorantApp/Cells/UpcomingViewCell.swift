@@ -107,7 +107,7 @@ class UpcomingViewCell: UICollectionViewCell {
     var topRectangle: UIImageView = {
         var image = UIImageView(frame: CGRect(x: 0, y: 0, width: 354, height: 38))
         
-        image.backgroundColor = .lightGray
+        image.backgroundColor = .customLightGray
         image.clipsToBounds = true
         image.layer.cornerRadius = 8
         image.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -119,7 +119,7 @@ class UpcomingViewCell: UICollectionViewCell {
     var bottomRectangle: UIImageView = {
         var image = UIImageView(frame: CGRect(x: 0, y: 0, width: 354, height: 71))
         
-        image.backgroundColor = .darkGray
+        image.backgroundColor = .customDarkGray
         image.clipsToBounds = true
         image.layer.cornerRadius = 8
         image.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -142,7 +142,7 @@ class UpcomingViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        set(seriesLabel: "teste", date: "teste", country_flag1: "flag_cn", country_flag2: "flag_cn", team_name1: "teste", team_name2: "teste", game_time: "teste", time_from_now: "teste")
+        set(seriesLabel: "teste", date: "teste", country_flag1: "flag_cn", country_flag2: "flag_cn", team_name1: "fun plus phoenix", team_name2: "Leviathan", game_time: "12:00", time_from_now: "(1d 2h from now)")
         addElements()
     }
 
@@ -171,13 +171,11 @@ class UpcomingViewCell: UICollectionViewCell {
         
             topRectangle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 18),
             
-            topRectangle.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -18),
+            topRectangle.trailingAnchor.constraint(equalTo: topRectangle.leadingAnchor, constant: 354),
             
             topRectangle.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
             
-            topRectangle.bottomAnchor.constraint(equalTo: self.topRectangle.topAnchor, constant: 38),
-            
-            topRectangle.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
+            topRectangle.bottomAnchor.constraint(equalTo: self.topRectangle.topAnchor, constant: 38)
             
             
         ])
@@ -207,11 +205,10 @@ class UpcomingViewCell: UICollectionViewCell {
         
             seriesLabel.leadingAnchor.constraint(equalTo: topRectangle.leadingAnchor, constant: 8),
             
-//            seriesLabel.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -183),
+            seriesLabel.topAnchor.constraint(equalTo: topRectangle.topAnchor, constant: 13),
             
-            seriesLabel.topAnchor.constraint(equalTo: topRectangle.topAnchor, constant: 13)
+            seriesLabel.bottomAnchor.constraint(equalTo: topRectangle.bottomAnchor, constant: -7)
             
-//            seriesLabel.bottomAnchor.constraint(equalTo: topRectangle.bottomAnchor, constant: 7)
         ])
     }
     
@@ -219,11 +216,12 @@ class UpcomingViewCell: UICollectionViewCell {
         topRectangle.addSubview(date)
         
         NSLayoutConstraint.activate([
-            date.leadingAnchor.constraint(equalTo: seriesLabel.trailingAnchor, constant: 10),
             
             date.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -8),
             
-            date.topAnchor.constraint(equalTo: topRectangle.topAnchor, constant: 13)
+            date.topAnchor.constraint(equalTo: seriesLabel.topAnchor),
+            
+            date.bottomAnchor.constraint(equalTo: seriesLabel.bottomAnchor)
             
         ])
     }
@@ -251,9 +249,9 @@ class UpcomingViewCell: UICollectionViewCell {
             
             team_name1.leadingAnchor.constraint(equalTo: country_flag1.trailingAnchor, constant: 13),
             
-//            team_name1.trailingAnchor.constraint(equalTo: bottomRectangle.trailingAnchor, constant: -255),
+            team_name1.bottomAnchor.constraint(equalTo: bottomRectangle.bottomAnchor, constant: -18),
             
-            team_name1.bottomAnchor.constraint(equalTo: bottomRectangle.bottomAnchor, constant: -18)
+            team_name1.trailingAnchor.constraint(equalTo: team_name1.leadingAnchor, constant: 62),
         
         ])
     }
@@ -261,28 +259,39 @@ class UpcomingViewCell: UICollectionViewCell {
     func addGameTime(){
         bottomRectangle.addSubview(game_time)
         
-        NSLayoutConstraint.activate([]
-    
+        NSLayoutConstraint.activate([
         
-        )
+            game_time.topAnchor.constraint(equalTo: bottomRectangle.topAnchor, constant: 16),
+            
+            game_time.leadingAnchor.constraint(equalTo: team_name1.trailingAnchor, constant: 52)
+        
+        ])
     }
     
     func addTimeFromNow(){
+        bottomRectangle.addSubview(time_from_now)
         
+        NSLayoutConstraint.activate([
+        
+            time_from_now.leadingAnchor.constraint(equalTo: team_name1.trailingAnchor, constant: 24),
+            
+            time_from_now.topAnchor.constraint(equalTo: game_time.bottomAnchor, constant: 0)
+        
+        ])
     }
     
     func addTeamName2(){
         bottomRectangle.addSubview(team_name2)
         
         NSLayoutConstraint.activate([
+            
+            team_name2.topAnchor.constraint(equalTo: team_name1.topAnchor),
+            
+            team_name2.bottomAnchor.constraint(equalTo: team_name1.bottomAnchor),
         
-            team_name2.topAnchor.constraint(equalTo: bottomRectangle.topAnchor, constant: 16),
+            team_name2.leadingAnchor.constraint(equalTo: game_time.trailingAnchor, constant: 52),
             
-            team_name2.bottomAnchor.constraint(equalTo: bottomRectangle.bottomAnchor, constant: -18),
-            
-            team_name2.leadingAnchor.constraint(equalTo: team_name1.leadingAnchor, constant: 200),
-            
-//            team_name2.trailingAnchor.constraint(equalTo: country_flag2.leadingAnchor, constant: -13)
+            team_name2.trailingAnchor.constraint(equalTo: team_name2.leadingAnchor, constant: 62)
         
         ])
     }
@@ -291,14 +300,16 @@ class UpcomingViewCell: UICollectionViewCell {
         bottomRectangle.addSubview(country_flag2)
         
         NSLayoutConstraint.activate([
-        
-            country_flag2.topAnchor.constraint(equalTo: bottomRectangle.topAnchor, constant: 27),
+            
+            country_flag2.topAnchor.constraint(equalTo: country_flag1.topAnchor),
+            
+            country_flag2.bottomAnchor.constraint(equalTo: country_flag1.bottomAnchor),
             
             country_flag2.leadingAnchor.constraint(equalTo: team_name2.trailingAnchor, constant: 13),
             
-            country_flag2.trailingAnchor.constraint(equalTo: bottomRectangle.trailingAnchor, constant: -10),
+            country_flag2.trailingAnchor.constraint(equalTo: bottomRectangle.trailingAnchor, constant: -10)
             
-            country_flag2.bottomAnchor.constraint(equalTo: bottomRectangle.bottomAnchor, constant: -30)
+            
         
         ])
     }
