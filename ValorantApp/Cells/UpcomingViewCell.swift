@@ -261,7 +261,7 @@ class UpcomingViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
         
-            game_time.topAnchor.constraint(equalTo: bottomRectangle.topAnchor, constant: 16),
+            game_time.topAnchor.constraint(equalTo: bottomRectangle.topAnchor, constant: 20),
             
             game_time.leadingAnchor.constraint(equalTo: team_name1.trailingAnchor, constant: 52)
         
@@ -275,7 +275,7 @@ class UpcomingViewCell: UICollectionViewCell {
         
             time_from_now.leadingAnchor.constraint(equalTo: team_name1.trailingAnchor, constant: 24),
             
-            time_from_now.topAnchor.constraint(equalTo: game_time.bottomAnchor, constant: 0)
+            time_from_now.topAnchor.constraint(equalTo: game_time.bottomAnchor, constant: 1)
         
         ])
     }

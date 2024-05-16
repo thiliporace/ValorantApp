@@ -22,7 +22,14 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         }
       
         let match = self.matches[indexPath.row]
-        cell.set(seriesLabel: match.matchSeries, date: match.unixTimestamp, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: match.unixTimestamp, time_from_now: match.timeUntilMatch)
+        let timestamp = self.matches[indexPath.row].unixTimestamp
+        let messageSplit = timestamp.split(separator: " ")
+        let messagePrefix = String(messageSplit.first ?? "")
+        let messageSufix = String(messageSplit.last ?? "")
+        let dateSufix = messageSufix.split(separator: ":")
+        let newDateSufix = String(dateSufix[0] + ":" + dateSufix[1])
+        
+        cell.set(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
 //        cell.backgroundColor = .yellow
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true

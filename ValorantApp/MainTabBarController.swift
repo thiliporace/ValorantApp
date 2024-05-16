@@ -32,6 +32,7 @@ class MainTabBarController: UITabBarController {
     func configTabbars(){
         let upcomingViewController = UINavigationController(rootViewController: UpcomingViewController())
         
+        
         //Colocando as configuracoes do item da tabbar
         upcomingViewController.tabBarItem.title = "Upcoming"
         upcomingViewController.tabBarItem.image = UIImage(systemName: "newspaper")

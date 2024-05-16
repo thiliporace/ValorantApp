@@ -13,6 +13,8 @@ class UpcomingViewController: UIViewController {
     var upcomingViewDataSource: UpcomingViewDataSource
     var upcomingViewDelegate: UpcomingViewDelegate
     
+    let receiveMatches: Bool = false
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -25,17 +27,26 @@ class UpcomingViewController: UIViewController {
     
     var upcomingMatchModel = UpcomingMatchModel()
     var matches = [UpcomingSegment]()
-    {
-        didSet{
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
+    
+    var championshipPicker: UIPickerView = {
+        let picker = UIPickerView()
+        
+        picker.tintColor = .mainRed
+        picker.backgroundColor = .mainRed
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        
+        return picker
+    }()
+
+    var pickerUpcomingDataSource: PickerUpcomingDataSource
+    var pickerUpcomingDelegate: PickerUpcomingDelegate
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.upcomingViewDataSource = UpcomingViewDataSource(matches: matches)
         self.upcomingViewDelegate = UpcomingViewDelegate()
+        
+        self.pickerUpcomingDataSource = PickerUpcomingDataSource(matches: matches)
+        self.pickerUpcomingDelegate = PickerUpcomingDelegate(matches: matches)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,12 +58,13 @@ class UpcomingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        receiveUpcomingMatches()
         
+        receiveUpcomingMatches()
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
         
-        navigationController?.navigationBar.barTintColor = .customBlack
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.backgroundColor = .clear
         
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         
@@ -60,18 +72,25 @@ class UpcomingViewController: UIViewController {
         
         self.collectionView.delegate = upcomingViewDelegate
         self.collectionView.dataSource = upcomingViewDataSource
+        
         setElements()
         
     }
     
     func setElements(){
         setupCollectionView()
+        setupPicker()
     }
     
     func receiveUpcomingMatches(){
-        upcomingMatchModel.getMatches { matches in
-            self.matches = matches
-//            self.collectionView.reloadData()
+        
+        upcomingMatchModel.getMatches()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8)
+        {
+            self.matches = self.upcomingMatchModel.upcomingMatches
+            self.upcomingViewDataSource.matches = self.matches
+            self.collectionView.reloadData()
+//            print(self.matches)
         }
     }
     
@@ -86,13 +105,24 @@ class UpcomingViewController: UIViewController {
             
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 82),
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             
             collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
         
+    }
+    
+    func setupPicker(){
+        view.addSubview(championshipPicker)
         
+        NSLayoutConstraint.activate([
+        
+            championshipPicker.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            
+            championshipPicker.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 29)
+        
+        ])
     }
 
 }

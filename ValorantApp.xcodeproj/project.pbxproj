@@ -25,6 +25,8 @@
 		8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */; };
 		8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */; };
 		8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */; };
+		8FDC53E62BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */; };
+		8FDC53E82BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewCell.swift; sourceTree = "<group>"; };
 		8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDataSource.swift; sourceTree = "<group>"; };
 		8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDelegate.swift; sourceTree = "<group>"; };
+		8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDataSource.swift; sourceTree = "<group>"; };
+		8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 			children = (
 				8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */,
 				8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */,
+				8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */,
+				8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -226,6 +232,8 @@
 				8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */,
 				8F689A5F2BF3CCEA00B67F5E /* MainTabBarController.swift in Sources */,
 				8F689A622BF3CDE500B67F5E /* UpcomingViewController.swift in Sources */,
+				8FDC53E82BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift in Sources */,
+				8FDC53E62BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift in Sources */,
 				8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */,
 				8F689A712BF3D35D00B67F5E /* LiveMatchEntity.swift in Sources */,
 				8F689A662BF3CDFD00B67F5E /* FollowingViewController.swift in Sources */,

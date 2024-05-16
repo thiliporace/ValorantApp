@@ -23,4 +23,8 @@ class UpcomingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionView
         return 18
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout:  UICollectionViewLayout, insetForSectionAt: Int) -> UIEdgeInsets{
+        return UIEdgeInsets(top: 80, left: 0, bottom: 20, right: 0)
+    }
+    
 }

@@ -13,7 +13,7 @@ class UpcomingMatchModel: NSObject{
     var names: [String] = []
     var error: MatchError?
     
-    func getMatches(completionHandler: @escaping ([UpcomingSegment]) -> Void) {
+    func getMatches() {
             guard let url = URL(string: "https://vlrggapi.vercel.app/match?q=upcoming") else { fatalError("Missing URL") }
             
             let urlRequest = URLRequest(url: url)
@@ -25,11 +25,11 @@ class UpcomingMatchModel: NSObject{
                 }
                 
                 guard let response = response as? HTTPURLResponse else { return }
-                print("Resposta: ", response)
+//                print("Resposta: ", response)
                 
                 if response.statusCode == 200 {
                     guard let data = data else { return }
-                
+                    
                     DispatchQueue.main.async {
                         do {
                             let decodedUsers = try JSONDecoder().decode(UpcomingMatch.self, from: data)
@@ -42,7 +42,7 @@ class UpcomingMatchModel: NSObject{
                         }
                     }
                 }
-                DispatchQueue.main.async { completionHandler(self.upcomingMatches) }
+//                DispatchQueue.main.async { completionHandler(self.upcomingMatches) }
 //                completionHandler(self.upcomingMatches)
             }
             dataTask.resume()
