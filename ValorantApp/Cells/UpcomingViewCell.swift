@@ -34,17 +34,6 @@ class UpcomingViewCell: UICollectionViewCell {
         return label
     }()
     
-//    var country_flag1: UIImageView = {
-//        let image = UIImageView()
-//        
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        image.clipsToBounds = true
-//        image.contentMode = .scaleAspectFill
-//        image.frame = CGRect(x: 0, y: 0, width: 20, height: 13.33)
-//        
-//        return image
-//    }()
-    
     var country_flag1: UILabel = {
         let image = UILabel()
         
@@ -62,17 +51,6 @@ class UpcomingViewCell: UICollectionViewCell {
         
         return image
     }()
-    
-//    var country_flag2: UIImageView = {
-//        let image = UIImageView()
-//        
-//        image.translatesAutoresizingMaskIntoConstraints = false
-//        image.clipsToBounds = true
-//        image.contentMode = .scaleAspectFill
-//        image.frame = CGRect(x: 0, y: 0, width: 20, height: 13.33)
-//        
-//        return image
-//    }()
     
     var team_name1: UILabel = {
         let label = UILabel()

@@ -27,6 +27,7 @@
 		8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */; };
 		8FDC53E62BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */; };
 		8FDC53E82BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */; };
+		8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDelegate.swift; sourceTree = "<group>"; };
 		8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDataSource.swift; sourceTree = "<group>"; };
 		8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDelegate.swift; sourceTree = "<group>"; };
+		8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */,
+				8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */,
 				8F689A4B2BF3CADF00B67F5E /* AppDelegate.swift in Sources */,
 				8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */,
 				8F689A5F2BF3CCEA00B67F5E /* MainTabBarController.swift in Sources */,
