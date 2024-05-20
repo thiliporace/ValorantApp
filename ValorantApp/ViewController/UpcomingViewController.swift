@@ -28,25 +28,37 @@ class UpcomingViewController: UIViewController {
     var upcomingMatchModel = UpcomingMatchModel()
     var matches = [UpcomingSegment]()
     
-    var championshipPicker: UIPickerView = {
-        let picker = UIPickerView()
+    var didApplyFilter: Bool = false
+    var championshipName: String = ""
+    
+    var popupButton: UIButton = {
+        let button = UIButton()
         
-        picker.tintColor = .mainRed
-        picker.backgroundColor = .mainRed
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        
-        return picker
+        button.setTitle("Championship", for: UIControl.State.normal)
+        button.setTitleColor(.mainRed, for: UIControl.State.normal)
+        button.frame = CGRect(x: 0, y: 0, width: 354, height: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        button.titleLabel?.textAlignment = .left
+        button.titleLabel?.numberOfLines = 0
+        button.contentHorizontalAlignment = .left
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.showsMenuAsPrimaryAction = true
+        return button
     }()
-
-    var pickerUpcomingDataSource: PickerUpcomingDataSource
-    var pickerUpcomingDelegate: PickerUpcomingDelegate
+    
+    var chevronImage: UIImageView = {
+        let configuration = UIImage.SymbolConfiguration(weight: .bold)
+        let image = UIImage(systemName: "chevron.up.chevron.down", withConfiguration: configuration)
+        let newImage = UIImageView(image: image)
+        newImage.translatesAutoresizingMaskIntoConstraints = false
+        newImage.tintColor = .mainRed
+        
+        return newImage
+    }()
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.upcomingViewDataSource = UpcomingViewDataSource(matches: matches)
         self.upcomingViewDelegate = UpcomingViewDelegate()
-        
-        self.pickerUpcomingDataSource = PickerUpcomingDataSource(matches: matches)
-        self.pickerUpcomingDelegate = PickerUpcomingDelegate(matches: matches)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,11 +67,15 @@ class UpcomingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        upcomingMatchModel.getMatches()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        receiveUpcomingMatches()
+        
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
         
@@ -73,25 +89,45 @@ class UpcomingViewController: UIViewController {
         self.collectionView.delegate = upcomingViewDelegate
         self.collectionView.dataSource = upcomingViewDataSource
         
+        receiveUpcomingMatches()
         setElements()
         
     }
     
     func setElements(){
         setupCollectionView()
-        setupPicker()
+//        setupPicker()
+        setupButton()
+        setupImage()
     }
     
     func receiveUpcomingMatches(){
         
-        upcomingMatchModel.getMatches()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8)
-        {
-            self.matches = self.upcomingMatchModel.upcomingMatches
-            self.upcomingViewDataSource.matches = self.matches
-            self.collectionView.reloadData()
-//            print(self.matches)
+            if (!self.didApplyFilter){
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1)
+                {
+                    self.matches = self.upcomingMatchModel.upcomingMatches
+                    self.upcomingViewDataSource.matches = self.matches
+                    self.popupButton.menu = self.createActions()
+                    self.collectionView.reloadData()
+                }
+            }
+        else{
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now())
+            {
+                var newMatchesArray: [UpcomingSegment] = []
+                self.upcomingMatchModel.upcomingMatches.forEach { match in
+                    if (match.matchEvent == self.championshipName){
+                        newMatchesArray.append(match)
+                    }
+                }
+                self.matches = newMatchesArray
+                print(self.matches.count)
+                self.upcomingViewDataSource.matches = self.matches
+                self.collectionView.reloadData()
+            }
         }
+        
     }
     
     func setupCollectionView(){
@@ -113,14 +149,61 @@ class UpcomingViewController: UIViewController {
         
     }
     
-    func setupPicker(){
-        view.addSubview(championshipPicker)
+    func createActions() -> UIMenu{
+        var actions: [UIAction] = []
+        var newArray: [String] = []
+        
+        matches.forEach { match in
+            newArray.append(match.matchEvent)
+        }
+        
+        //Tira elementos repetidos
+        let uniqueElementsArray = Array(Set(newArray))
+        
+        uniqueElementsArray.forEach { unique in
+            
+            let action = UIAction(title: unique, handler: { action in
+                self.didApplyFilter = true
+                self.championshipName = unique
+                print("Opção selecionada: \(unique)")
+                self.popupButton.setTitle(unique, for: UIControl.State.normal)
+                self.receiveUpcomingMatches()
+            })
+            
+            actions.append(action)
+        }
+        
+        return UIMenu(title: "Choose Championship", options: .displayInline, children: actions)
+    }
+    
+    func setupButton(){
+        
+        collectionView.addSubview(popupButton)
         
         NSLayoutConstraint.activate([
         
-            championshipPicker.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            popupButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 18),
             
-            championshipPicker.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 29)
+            popupButton.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 59)
+        
+        ])
+    }
+    
+    func setupImage(){
+        
+        collectionView.addSubview(chevronImage)
+        
+        NSLayoutConstraint.activate([
+            
+            chevronImage.widthAnchor.constraint(equalToConstant: 14),
+            
+            chevronImage.heightAnchor.constraint(equalToConstant: 18),
+            
+            chevronImage.leadingAnchor.constraint(equalTo: popupButton.trailingAnchor, constant: 3),
+            
+            chevronImage.bottomAnchor.constraint(equalTo: popupButton.bottomAnchor, constant: -7),
+            
+            chevronImage.trailingAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -28)
         
         ])
     }

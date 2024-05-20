@@ -84,6 +84,7 @@
 		8F689A492BF3CADF00B67F5E /* ValorantApp */ = {
 			isa = PBXGroup;
 			children = (
+				8FDC53E92BFBC2ED00F2FCD4 /* Enums */,
 				8FDC53E02BF553F600F2FCD4 /* CollectionView */,
 				8F689A7C2BF3EF3600B67F5E /* Cells */,
 				8F689A682BF3D0DD00B67F5E /* Entities */,
@@ -155,6 +156,13 @@
 				8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8FDC53E92BFBC2ED00F2FCD4 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

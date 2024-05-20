@@ -21,4 +21,20 @@ class PickerUpcomingDelegate: NSObject, UIPickerViewDelegate{
                     forComponent component: Int) -> String?{
         return matches[row].matchEvent
     }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+
+        label.textColor = .mainRed
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+
+        label.text = matches[row].matchEvent
+
+        return label
+    }
+    
+    
 }
