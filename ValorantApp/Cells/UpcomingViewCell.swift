@@ -154,8 +154,10 @@ class UpcomingViewCell: UICollectionViewCell {
         case "flag_kr": newString = "🇰🇷"
         case "flag_tr": newString = "🇹🇷"
         case "flag_pl": newString = "🇵🇱"
+        case "flag_eg": newString = "🇪🇬"
+        case "flag_il": newString = "🇮🇱"
         default:
-            newString = "🌐"
+            newString = "🇺🇳"
         }
         return newString
     }

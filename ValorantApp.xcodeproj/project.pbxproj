@@ -25,9 +25,9 @@
 		8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */; };
 		8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */; };
 		8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */; };
-		8FDC53E62BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */; };
-		8FDC53E82BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */; };
 		8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */; };
+		8FDC53EF2BFD325600F2FCD4 /* LiveViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53EE2BFD325600F2FCD4 /* LiveViewDataSource.swift */; };
+		8FDC53F12BFD325F00F2FCD4 /* LiveViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53F02BFD325F00F2FCD4 /* LiveViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +51,9 @@
 		8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewCell.swift; sourceTree = "<group>"; };
 		8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDataSource.swift; sourceTree = "<group>"; };
 		8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDelegate.swift; sourceTree = "<group>"; };
-		8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDataSource.swift; sourceTree = "<group>"; };
-		8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUpcomingDelegate.swift; sourceTree = "<group>"; };
 		8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewCell.swift; sourceTree = "<group>"; };
+		8FDC53EE2BFD325600F2FCD4 /* LiveViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewDataSource.swift; sourceTree = "<group>"; };
+		8FDC53F02BFD325F00F2FCD4 /* LiveViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +155,8 @@
 			children = (
 				8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */,
 				8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */,
-				8FDC53E52BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift */,
-				8FDC53E72BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift */,
+				8FDC53EE2BFD325600F2FCD4 /* LiveViewDataSource.swift */,
+				8FDC53F02BFD325F00F2FCD4 /* LiveViewDelegate.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -242,10 +242,9 @@
 				8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */,
 				8F689A4B2BF3CADF00B67F5E /* AppDelegate.swift in Sources */,
 				8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */,
+				8FDC53EF2BFD325600F2FCD4 /* LiveViewDataSource.swift in Sources */,
 				8F689A5F2BF3CCEA00B67F5E /* MainTabBarController.swift in Sources */,
 				8F689A622BF3CDE500B67F5E /* UpcomingViewController.swift in Sources */,
-				8FDC53E82BF6A62100F2FCD4 /* PickerUpcomingDelegate.swift in Sources */,
-				8FDC53E62BF6A52300F2FCD4 /* PickerUpcomingDataSource.swift in Sources */,
 				8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */,
 				8F689A712BF3D35D00B67F5E /* LiveMatchEntity.swift in Sources */,
 				8F689A662BF3CDFD00B67F5E /* FollowingViewController.swift in Sources */,
@@ -253,6 +252,7 @@
 				8F689A6A2BF3D0EF00B67F5E /* UpcomingMatchEntity.swift in Sources */,
 				8F689A792BF3D4E000B67F5E /* FollowingEntity.swift in Sources */,
 				8F689A6C2BF3D0FB00B67F5E /* UpcomingMatchModel.swift in Sources */,
+				8FDC53F12BFD325F00F2FCD4 /* LiveViewDelegate.swift in Sources */,
 				8F689A4D2BF3CADF00B67F5E /* SceneDelegate.swift in Sources */,
 				8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */,
 				8F689A7B2BF3D63800B67F5E /* FollowingModel.swift in Sources */,

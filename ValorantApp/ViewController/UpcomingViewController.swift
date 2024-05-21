@@ -81,7 +81,6 @@ class UpcomingViewController: UIViewController {
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
         
-        //nao esta funcionando
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.layoutIfNeeded()
@@ -103,7 +102,6 @@ class UpcomingViewController: UIViewController {
     
     func setElements(){
         setupCollectionView()
-//        setupPicker()
         setupButton()
         setupImage()
     }
