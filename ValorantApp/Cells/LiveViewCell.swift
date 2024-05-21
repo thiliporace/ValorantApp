@@ -96,17 +96,7 @@ class LiveViewCell: UICollectionViewCell {
         return label
     }()
     
-    var score1: UILabel = {
-        let label = UILabel()
-        
-        label.font = UIFont(name: "FrancaDEMO-Bold", size: 14)
-        label.textColor = .customTextGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    var score2: UILabel = {
+    var score_text: UILabel = {
         let label = UILabel()
         
         label.font = UIFont(name: "FrancaDEMO-Bold", size: 14)
@@ -206,8 +196,7 @@ class LiveViewCell: UICollectionViewCell {
         self.map_name.text = String("Map \(map_number) - \(current_map)")
         self.team1_round.text = team1_round
         self.team2_round.text = team2_round
-        self.score1.text = score1
-        self.score2.text = score2
+        self.score_text.text = String("\(score1)-\(score2)")
         self.country_flag1.text = addEmoji(string: country_flag1)
         self.country_flag2.text = addEmoji(string: country_flag2)
         self.team_name1.text = team_name1
@@ -217,7 +206,7 @@ class LiveViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        set(seriesLabel: <#T##String#>, current_map: <#T##String#>, map_number: <#T##String#>, team1_round: <#T##String#>, team2_round: <#T##String#>, score1: <#T##String#>, score2: <#T##String#>, country_flag1: <#T##String#>, country_flag2: <#T##String#>, team_name1: <#T##String#>, team_name2: <#T##String#>)
+        set(seriesLabel: "Regular Week: Round 1", current_map: "Icebox", map_number: "1", team1_round: "12", team2_round: "3", score1: "0", score2: "0", country_flag1: "flag_cn", country_flag2: "flag_br", team_name1: "Fun Plus Phoenix", team_name2: "KRU Esports")
         addElements()
     }
 

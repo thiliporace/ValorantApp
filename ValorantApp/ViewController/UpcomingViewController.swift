@@ -15,6 +15,8 @@ class UpcomingViewController: UIViewController {
     
     let receiveMatches: Bool = false
     
+    var allChampionshipsChosen: Bool = true
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -34,7 +36,7 @@ class UpcomingViewController: UIViewController {
     var popupButton: UIButton = {
         let button = UIButton()
         
-        button.setTitle("Championship", for: UIControl.State.normal)
+        button.setTitle("All Championships", for: UIControl.State.normal)
         button.setTitleColor(.mainRed, for: UIControl.State.normal)
         button.frame = CGRect(x: 0, y: 0, width: 354, height: 18)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -78,6 +80,11 @@ class UpcomingViewController: UIViewController {
         
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
+        
+        //nao esta funcionando
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.layoutIfNeeded()
         
         navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.backgroundColor = .clear
@@ -153,6 +160,15 @@ class UpcomingViewController: UIViewController {
         var actions: [UIAction] = []
         var newArray: [String] = []
         
+        let firstAction = UIAction(title: "All Championships",state: allChampionshipsChosen ? .on : .off ) { action in
+            self.allChampionshipsChosen = true
+            self.didApplyFilter = false
+            print("Opção selecionada: All")
+            self.popupButton.setTitle("All Championships", for: UIControl.State.normal)
+            self.receiveUpcomingMatches()
+        }
+        actions.append(firstAction)
+        
         matches.forEach { match in
             newArray.append(match.matchEvent)
         }
@@ -163,6 +179,8 @@ class UpcomingViewController: UIViewController {
         uniqueElementsArray.forEach { unique in
             
             let action = UIAction(title: unique, handler: { action in
+                self.allChampionshipsChosen = false
+                self.popupButton.menu = self.createActions()
                 self.didApplyFilter = true
                 self.championshipName = unique
                 print("Opção selecionada: \(unique)")
