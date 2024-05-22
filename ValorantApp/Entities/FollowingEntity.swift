@@ -16,7 +16,7 @@ struct Following: Codable {
 // MARK: - FollowingStruct
 struct FollowingSegment: Codable {
     let rank, team: String
-    let country: Country
+    let country: String
     let lastPlayed, lastPlayedTeam, lastPlayedTeamLogo, record: String
     let earnings, logo: String
 
@@ -27,10 +27,4 @@ struct FollowingSegment: Codable {
         case lastPlayedTeamLogo = "last_played_team_logo"
         case record, earnings, logo
     }
-}
-
-enum Country: String, Codable {
-    case canada = "Canada"
-    case international = "International"
-    case unitedStates = "United States"
 }

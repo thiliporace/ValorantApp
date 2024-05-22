@@ -50,6 +50,17 @@ class LiveViewController: UIViewController {
         return button
     }()
     
+    var refreshButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "arrow.clockwise", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: UIControl.State.normal)
+        button.tintColor = .mainRed
+        button.setTitleColor(UIColor.gray, for: UIControl.State.selected)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     var chevronImage: UIImageView = {
         let configuration = UIImage.SymbolConfiguration(weight: .bold)
         let image = UIImage(systemName: "chevron.up.chevron.down", withConfiguration: configuration)
@@ -58,6 +69,20 @@ class LiveViewController: UIViewController {
         newImage.tintColor = .mainRed
         
         return newImage
+    }()
+    
+    var noLiveMatchesLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "There are no Live Matches being played."
+        label.font = UIFont(name: "FrancaDEMO-Bold", size: 20)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = .mainRed
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -82,7 +107,9 @@ class LiveViewController: UIViewController {
         self.view.backgroundColor = .customBlack
         self.title = "Live Matches"
         
-//        refreshControl.addTarget(self, action: #selector(self.receiveLiveMatches), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        
+        refreshButton.addTarget(self, action: #selector(self.refresh), for: .touchUpInside)
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -109,12 +136,17 @@ class LiveViewController: UIViewController {
         setupCollectionView()
         setupButton()
         setupImage()
+        setupRefresh()
+        
     }
     
-//    @objc func refresh(){
-//        self.collectionView.reloadData()
-//        self.refreshControl.endRefreshing()
-//    }
+    @objc func refresh(){
+        self.receiveLiveMatches()
+        refreshButton.isSelected.toggle()
+        self.refreshControl.endRefreshing()
+        
+        print("Refresh")
+    }
     
     func receiveLiveMatches(){
         
@@ -126,6 +158,9 @@ class LiveViewController: UIViewController {
                     self.popupButton.menu = self.createActions()
                     self.collectionView.reloadData()
                     self.refreshControl.endRefreshing()
+                    if self.matches.count == 0 {
+                        self.setupNoMatchesLabel()
+                    }
                 }
             }
         else{
@@ -232,6 +267,37 @@ class LiveViewController: UIViewController {
             chevronImage.bottomAnchor.constraint(equalTo: popupButton.bottomAnchor, constant: -7),
             
             chevronImage.trailingAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -28)
+        
+        ])
+    }
+    
+    func setupRefresh(){
+        
+        collectionView.addSubview(refreshButton)
+        
+        NSLayoutConstraint.activate([
+            
+            refreshButton.widthAnchor.constraint(equalToConstant: 15.71),
+            
+            refreshButton.heightAnchor.constraint(equalToConstant: 19.14),
+        
+            refreshButton.leadingAnchor.constraint(equalTo: chevronImage.trailingAnchor, constant: 157),
+            
+            refreshButton.centerYAnchor.constraint(equalTo: popupButton.centerYAnchor)
+            
+        ])
+    }
+    
+    func setupNoMatchesLabel(){
+        view.addSubview(noLiveMatchesLabel)
+        
+        NSLayoutConstraint.activate([
+            
+            noLiveMatchesLabel.widthAnchor.constraint(equalToConstant: 354),
+        
+            noLiveMatchesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            noLiveMatchesLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         
         ])
     }

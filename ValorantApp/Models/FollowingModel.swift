@@ -24,7 +24,7 @@ class FollowingModel: NSObject{
                 }
                 
                 guard let response = response as? HTTPURLResponse else { return }
-                print("Resposta: ", response)
+//                print("Resposta: ", response)
                 
                 if response.statusCode == 200 {
                     guard let data = data else { return }

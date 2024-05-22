@@ -15,6 +15,8 @@ class UpcomingViewController: UIViewController {
     
     let receiveMatches: Bool = false
     
+    let refreshControl = UIRefreshControl()
+    
     var allChampionshipsChosen: Bool = true
     
     let collectionView: UICollectionView = {
@@ -77,6 +79,7 @@ class UpcomingViewController: UIViewController {
         
         super.viewDidLoad()
         
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         
         self.view.backgroundColor = .customBlack
         self.title = "Upcoming Matches"
@@ -98,12 +101,18 @@ class UpcomingViewController: UIViewController {
         receiveUpcomingMatches()
         setElements()
         
+        collectionView.addSubview(refreshControl)
     }
     
     func setElements(){
         setupCollectionView()
         setupButton()
         setupImage()
+    }
+    
+    @objc func refresh(){
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     func receiveUpcomingMatches(){
@@ -132,25 +141,6 @@ class UpcomingViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-        
-    }
-    
-    func setupCollectionView(){
-        view.addSubview(collectionView)
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-        
-            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            
-            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            
-            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        
-        ])
         
     }
     
@@ -190,6 +180,25 @@ class UpcomingViewController: UIViewController {
         }
         
         return UIMenu(title: "Choose Championship", options: .displayInline, children: actions)
+    }
+    
+    func setupCollectionView(){
+        view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            
+            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        
+        ])
+        
     }
     
     func setupButton(){
