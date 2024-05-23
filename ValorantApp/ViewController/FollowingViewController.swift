@@ -62,7 +62,7 @@ class FollowingViewController: UIViewController {
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.followingViewDataSource = FollowingViewDataSource(matches: matches)
-        self.followingViewDelegate = FollowingViewDelegate()
+        self.followingViewDelegate = FollowingViewDelegate(dataSource: followingViewDataSource)
         
         super.init(nibName: nil, bundle: nil)
     }
