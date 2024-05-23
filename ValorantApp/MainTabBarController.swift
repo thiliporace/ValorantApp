@@ -34,8 +34,8 @@ class MainTabBarController: UITabBarController {
         
         //Colocando as configuracoes do item da tabbar
         upcomingViewController.tabBarItem.title = "Upcoming"
-        upcomingViewController.tabBarItem.image = UIImage(systemName: "newspaper")
-        upcomingViewController.tabBarItem.selectedImage = UIImage(systemName: "newspaper.fill")
+        upcomingViewController.tabBarItem.image = UIImage(systemName: "arrow.up.forward.circle")
+        upcomingViewController.tabBarItem.selectedImage = UIImage(systemName: "arrow.up.forward.circle.fill")
         
         let liveViewController = UINavigationController(rootViewController: LiveViewController())
         

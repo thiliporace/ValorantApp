@@ -198,7 +198,10 @@ class FollowingViewController: UIViewController {
         actions.append(firstAction)
         
         regions.forEach { region in
-            newArray.append(region)
+            if (region != "la"){
+                newArray.append(region)
+            }
+            
         }
         
         //Tira elementos repetidos
