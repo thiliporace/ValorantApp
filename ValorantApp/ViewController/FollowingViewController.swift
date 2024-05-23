@@ -73,13 +73,6 @@ class FollowingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        regions.forEach { region in
-            followingMatchModel.getTeams(region: region)
-        }
-        
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -123,32 +116,42 @@ class FollowingViewController: UIViewController {
     }
     
     func receiveUpcomingMatches(){
+        var hasError: Bool = true
         
-            if (!self.didApplyFilter){
-                viewWillAppear(true)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1)
-                {
-                    self.matches = self.followingMatchModel.followingTeams
-                    self.followingViewDataSource.matches = self.matches
-                    self.popupButton.menu = self.createActions()
-                    self.collectionView.reloadData()
+        for (index, region) in regions.enumerated() {
+            Task{
+                await followingMatchModel.getTeams(region: region) { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        //Esse if roda so no ultimo item do for, então a tela não fica se atualizando toda hora
+                        if (index == regions.count - 1) {
+                            DispatchQueue.main.async {
+                                if (!self.didApplyFilter){
+                                    self.matches = self.followingMatchModel.followingTeams
+                                    self.followingViewDataSource.matches = self.matches
+                                    self.popupButton.menu = self.createActions()
+                                    self.collectionView.reloadData()
+                                }
+                                else{
+                                    self.matches.removeAll()
+                                    self.matches = self.followingMatchModel.followingTeams
+                                    self.followingViewDataSource.matches = self.matches
+                                    self.collectionView.reloadData()
+                                    print(self.matches.count)
+                                    
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
-        else{
-            self.matches.removeAll()
-            self.followingMatchModel.getTeams(region: self.regionName)
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1)
-            {
-                
-                
-                self.matches = self.followingMatchModel.followingTeams
-                self.followingViewDataSource.matches = self.matches
-                self.collectionView.reloadData()
-                print(self.matches.count)
+        }
+       
+            if(!hasError) {
                 
             }
-        }
         
     }
     

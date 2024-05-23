@@ -108,7 +108,7 @@ class BigFollowingViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        followButton.addTarget(self, action: #selector(self.onButtonPress), for: .touchUpInside)
+        followButton.addTarget(self, action: #selector(onButtonPress(sender: )), for: .touchUpInside)
                 
         set(team_label: "100 Thieves", rank: "2", region: "China", last_played: "4 days ago")
         addElements()
@@ -138,7 +138,7 @@ class BigFollowingViewCell: UICollectionViewCell {
         setTopRectangle()
         setTeamLogo()
         setTeamName()
-        setupFollowButton()
+//        setupFollowButton()
         setBottomRectangle()
         setRankLabel()
         setLastPlayedLabel()

@@ -8,8 +8,6 @@
 import UIKit
 
 class UpcomingViewController: UIViewController {
-    
-    
     var upcomingViewDataSource: UpcomingViewDataSource
     var upcomingViewDelegate: UpcomingViewDelegate
     
@@ -71,10 +69,7 @@ class UpcomingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        upcomingMatchModel.getMatches()
-    }
-    
+   
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -116,32 +111,33 @@ class UpcomingViewController: UIViewController {
     }
     
     func receiveUpcomingMatches(){
-        
-            if (!self.didApplyFilter){
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1)
-                {
-                    self.matches = self.upcomingMatchModel.upcomingMatches
-                    self.upcomingViewDataSource.matches = self.matches
-                    self.popupButton.menu = self.createActions()
-                    self.collectionView.reloadData()
-                }
-            }
-        else{
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now())
-            {
-                var newMatchesArray: [UpcomingSegment] = []
-                self.upcomingMatchModel.upcomingMatches.forEach { match in
-                    if (match.matchEvent == self.championshipName){
-                        newMatchesArray.append(match)
+        Task {
+            await upcomingMatchModel.getMatches { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    DispatchQueue.main.async {
+                        if (!self.didApplyFilter){
+                            self.matches = self.upcomingMatchModel.upcomingMatches
+                            self.upcomingViewDataSource.matches = self.matches
+                            self.popupButton.menu = self.createActions()
+                            self.collectionView.reloadData()
+                        } else {
+                            var newMatchesArray: [UpcomingSegment] = []
+                            self.upcomingMatchModel.upcomingMatches.forEach { match in
+                                if (match.matchEvent == self.championshipName){
+                                    newMatchesArray.append(match)
+                                }
+                            }
+                            self.matches = newMatchesArray
+                            print(self.matches.count)
+                            self.upcomingViewDataSource.matches = self.matches
+                            self.collectionView.reloadData()
+                        }
                     }
                 }
-                self.matches = newMatchesArray
-                print(self.matches.count)
-                self.upcomingViewDataSource.matches = self.matches
-                self.collectionView.reloadData()
             }
         }
-        
     }
     
     func createActions() -> UIMenu{

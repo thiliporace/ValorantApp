@@ -96,10 +96,6 @@ class LiveViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        liveMatchModel.getMatches()
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -149,37 +145,37 @@ class LiveViewController: UIViewController {
     }
     
     func receiveLiveMatches(){
-        
-            if (!self.didApplyFilter){
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1)
-                {
-                    self.matches = self.liveMatchModel.liveMatches
-                    self.liveViewDataSource.matches = self.matches
-                    self.popupButton.menu = self.createActions()
-                    self.collectionView.reloadData()
-                    self.refreshControl.endRefreshing()
-                    if self.matches.count == 0 {
-                        self.setupNoMatchesLabel()
+        Task {
+            await liveMatchModel.getMatches { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    DispatchQueue.main.async {
+                        if (!self.didApplyFilter){
+                            self.matches = self.liveMatchModel.liveMatches
+                            self.liveViewDataSource.matches = self.matches
+                            self.popupButton.menu = self.createActions()
+                            self.collectionView.reloadData()
+                            self.refreshControl.endRefreshing()
+                            if self.matches.count == 0 {
+                                self.setupNoMatchesLabel()
+                            }
+                        } else {
+                            var newMatchesArray: [LiveSegment] = []
+                            self.liveMatchModel.liveMatches.forEach { match in
+                                if (match.matchEvent == self.championshipName){
+                                    newMatchesArray.append(match)
+                                }
+                            }
+                            self.matches = newMatchesArray
+                            print(self.matches.count)
+                            self.liveViewDataSource.matches = self.matches
+                            self.collectionView.reloadData()
+                        }
                     }
                 }
-            }
-        else{
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now())
-            {
-                var newMatchesArray: [LiveSegment] = []
-                self.liveMatchModel.liveMatches.forEach { match in
-                    if (match.matchEvent == self.championshipName){
-                        newMatchesArray.append(match)
-                    }
-                }
-                self.matches = newMatchesArray
-                print(self.matches.count)
-                self.liveViewDataSource.matches = self.matches
-                self.collectionView.reloadData()
-                self.refreshControl.endRefreshing()
             }
         }
-        
     }
     
     func setupCollectionView(){

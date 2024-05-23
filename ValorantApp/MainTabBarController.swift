@@ -26,7 +26,6 @@ class MainTabBarController: UITabBarController {
         
         configTabbars()
         
-        
     }
     
     func configTabbars(){
