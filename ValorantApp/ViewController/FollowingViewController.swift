@@ -16,8 +16,6 @@ class FollowingViewController: UIViewController {
     
     let receiveMatches: Bool = false
     
-    let refreshControl = UIRefreshControl()
-    
     var allRegionsChosen: Bool = true
     
     let collectionView: UICollectionView = {
@@ -77,8 +75,6 @@ class FollowingViewController: UIViewController {
         
         super.viewDidLoad()
         
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        
         self.view.backgroundColor = .customBlack
         self.title = "All Teams"
         self.collectionView.isUserInteractionEnabled = true
@@ -99,8 +95,6 @@ class FollowingViewController: UIViewController {
         
         receiveUpcomingMatches()
         setElements()
-        
-        collectionView.addSubview(refreshControl)
     }
     
     func setElements(){
@@ -108,11 +102,6 @@ class FollowingViewController: UIViewController {
         setupButton()
         setupImage()
        
-    }
-    
-    @objc func refresh(){
-        self.collectionView.reloadData()
-        self.refreshControl.endRefreshing()
     }
     
     func receiveUpcomingMatches(){
@@ -125,7 +114,7 @@ class FollowingViewController: UIViewController {
                         print(error)
                     } else {
                         //Esse if roda so no ultimo item do for, então a tela não fica se atualizando toda hora
-                        if (index == regions.count - 1) {
+//                        if (index == regions.count - 1) {
                             DispatchQueue.main.async {
                                 if (!self.didApplyFilter){
                                     self.matches = self.followingMatchModel.followingTeams
@@ -134,15 +123,18 @@ class FollowingViewController: UIViewController {
                                     self.collectionView.reloadData()
                                 }
                                 else{
-                                    self.matches.removeAll()
-                                    self.matches = self.followingMatchModel.followingTeams
-                                    self.followingViewDataSource.matches = self.matches
-                                    self.collectionView.reloadData()
-                                    print(self.matches.count)
+                                    if (region == self.regionName){
+                                        self.matches.removeAll()
+                                        self.matches = self.followingMatchModel.followingTeams
+                                        self.followingViewDataSource.matches = self.matches
+                                        self.collectionView.reloadData()
+                                        print(self.matches.count)
+                                    }
+                                    
                                     
                                 }
                             }
-                        }
+//                        }
                         
                     }
                 }
@@ -206,7 +198,10 @@ class FollowingViewController: UIViewController {
         actions.append(firstAction)
         
         regions.forEach { region in
-            newArray.append(region)
+            if (region != "la"){
+                newArray.append(region)
+            }
+            
         }
         
         //Tira elementos repetidos

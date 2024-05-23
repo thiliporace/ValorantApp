@@ -137,8 +137,9 @@ class LiveViewController: UIViewController {
     }
     
     @objc func refresh(){
-        self.receiveLiveMatches()
         refreshButton.isSelected.toggle()
+        viewDidLoad()
+//        self.receiveLiveMatches()
         self.refreshControl.endRefreshing()
         
         print("Refresh")
