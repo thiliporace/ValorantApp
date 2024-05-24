@@ -28,7 +28,18 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         let messageSufix = String(messageSplit.last ?? "")
         let dateSufix = messageSufix.split(separator: ":")
         
-        let timeSubtracted = Int(dateSufix[0])! - 3
+        var timeSubtracted = Int(dateSufix[0])! - 3
+        switch timeSubtracted{
+        case -3:
+            timeSubtracted = 21
+        case -2:
+            timeSubtracted = 22
+        case -1:
+            timeSubtracted = 23
+        default: 
+            break
+        }
+        
         let newTime = String(timeSubtracted)
         
         let newDateSufix = String(newTime + ":" + dateSufix[1])

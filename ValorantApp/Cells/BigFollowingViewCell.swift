@@ -133,7 +133,7 @@ class BigFollowingViewCell: UICollectionViewCell {
         
         if !selectedBool{
             print("Não tava selecionado")
-            localSelectedBool = true
+//            localSelectedBool = true
             
             addButtonLabel(followbuttonlabel: "Unfollow")
             followButtonLabel.setNeedsLayout()
@@ -143,7 +143,7 @@ class BigFollowingViewCell: UICollectionViewCell {
         
         else if (selectedBool){
             print("Tava selecionado")
-            localSelectedBool = true
+//            localSelectedBool = true
             
             addButtonLabel(followbuttonlabel: "Follow")
             followButtonLabel.setNeedsLayout()
@@ -157,8 +157,8 @@ class BigFollowingViewCell: UICollectionViewCell {
         setTopRectangle()
         setTeamLogo()
         setTeamName()
-//        setFollowButtonBackground()
-//        setFollowButtonLabel()
+        setFollowButtonBackground()
+        setFollowButtonLabel()
         setBottomRectangle()
         setRankLabel()
         setLastPlayedLabel()
@@ -265,7 +265,7 @@ class BigFollowingViewCell: UICollectionViewCell {
     func setFollowButtonLabel(){
         topRectangle.addSubview(followButtonLabel)
         
-//        followButtonLabel.text = localSelectedBool ? "Unfollow" : "Follow"
+        followButtonLabel.text = localSelectedBool ? "Unfollow" : "Follow"
         
         NSLayoutConstraint.activate([
         
