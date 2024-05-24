@@ -12,6 +12,8 @@ class FollowingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionVie
     
     var dataSource: UICollectionViewDataSource
     
+    var selectedBool: Bool = false
+    
     init(dataSource: UICollectionViewDataSource) {
         self.dataSource = dataSource
     }
@@ -37,17 +39,26 @@ class FollowingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionVie
         return false
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BigFollowingViewCell.identifier, for: indexPath) as? BigFollowingViewCell else {
-            fatalError("The CollectionView could not dequeue a CustomCell in ViewController.")
-        }
-        cell.onButtonPress { error in
-            print("ssei l afaoidasoidaoskdpoaskdasd")
-            cell.followButton.setTitle("clicado", for: .normal)
-        }
-        
-        collectionView.reloadData()
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BigFollowingViewCell.identifier, for: indexPath) as? BigFollowingViewCell else {
+//            fatalError("The CollectionView could not dequeue a CustomCell in ViewController.")
+//        }
+//        
+//        if !(selectedBool){
+//            cell.onButtonPress(selectedBool: selectedBool)
+//            selectedBool.toggle()
+//        }
+//        else {
+//            cell.onButtonPress(selectedBool: selectedBool)
+//            selectedBool.toggle()
+//        }
+//        
+//        collectionView.performBatchUpdates {
+//            collectionView.reloadItems(at: [indexPath])
+//        }
+//       
+////        collectionView.reloadData()
+//    }
     
     
 }

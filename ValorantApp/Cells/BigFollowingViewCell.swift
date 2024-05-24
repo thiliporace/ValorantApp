@@ -12,7 +12,7 @@ class BigFollowingViewCell: UICollectionViewCell {
     
     static let identifier = "BigFollowingViewCell"
     
-    var isSelectedBool: Bool = false
+    var localSelectedBool = false
     
     var team_label: UILabel = {
         let label = UILabel()
@@ -84,18 +84,25 @@ class BigFollowingViewCell: UICollectionViewCell {
         return image
     }()
     
-    var followButton: CapsuleButton = {
-        let button = CapsuleButton()
+    var followButtonBackground: CapsuleImage = {
+       let image = CapsuleImage()
         
-        button.setTitle("Follow", for: .normal)
-        button.setTitleColor(.mainRed, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.backgroundColor = .customFollowButton
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        button.isUserInteractionEnabled = true
-        button.translatesAutoresizingMaskIntoConstraints = false
+        image.backgroundColor = .customFollowButton
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 40
+        image.clipsToBounds = true
         
-        return button
+        return image
+    }()
+    
+    var followButtonLabel: UILabel = {
+        let label = UILabel()
+        
+        label.textColor = .mainRed
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
     
     func set(team_label: String, rank: String, region: String, last_played: String){
@@ -105,10 +112,15 @@ class BigFollowingViewCell: UICollectionViewCell {
         self.last_played_label.text = String("Last Played: \(last_played)")
     }
     
+    func addButtonLabel(followbuttonlabel: String){
+        self.followButtonLabel.text = followbuttonlabel
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
                 
         set(team_label: "100 Thieves", rank: "2", region: "China", last_played: "4 days ago")
+
         addElements()
     }
     
@@ -117,20 +129,26 @@ class BigFollowingViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onButtonPress(callback: (_ error: Error?) -> Void){
+    func onButtonPress(selectedBool: Bool){
         
-        if !isSelectedBool{
+        if !selectedBool{
             print("Não tava selecionado")
-            followButton.setTitle("Unfollow", for: .normal)
-            isSelected = true
-            callback(nil)
+            localSelectedBool = true
+            
+            addButtonLabel(followbuttonlabel: "Unfollow")
+            followButtonLabel.setNeedsLayout()
+            setFollowButtonLabel()
+            
         }
         
-        else if (isSelectedBool){
+        else if (selectedBool){
             print("Tava selecionado")
-            followButton.setTitle("Follow", for: .selected)
-            isSelected = false
-            callback(nil)
+            localSelectedBool = true
+            
+            addButtonLabel(followbuttonlabel: "Follow")
+            followButtonLabel.setNeedsLayout()
+            setFollowButtonLabel()
+            
         }
         
     }
@@ -139,7 +157,8 @@ class BigFollowingViewCell: UICollectionViewCell {
         setTopRectangle()
         setTeamLogo()
         setTeamName()
-//        setupFollowButton()
+//        setFollowButtonBackground()
+//        setFollowButtonLabel()
         setBottomRectangle()
         setRankLabel()
         setLastPlayedLabel()
@@ -227,14 +246,32 @@ class BigFollowingViewCell: UICollectionViewCell {
         ])
     }
     
-    func setupFollowButton(){
-        topRectangle.addSubview(followButton)
+    func setFollowButtonBackground(){
+        topRectangle.addSubview(followButtonBackground)
+        
+        NSLayoutConstraint.activate([
+            
+            followButtonBackground.widthAnchor.constraint(equalToConstant: 73),
+            
+            followButtonBackground.heightAnchor.constraint(equalToConstant: 34),
+        
+            followButtonBackground.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -14),
+            
+            followButtonBackground.topAnchor.constraint(equalTo: topRectangle.topAnchor, constant: 18)
+        
+        ])
+    }
+    
+    func setFollowButtonLabel(){
+        topRectangle.addSubview(followButtonLabel)
+        
+//        followButtonLabel.text = localSelectedBool ? "Unfollow" : "Follow"
         
         NSLayoutConstraint.activate([
         
-            followButton.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -14),
+            followButtonLabel.centerXAnchor.constraint(equalTo: followButtonBackground.centerXAnchor),
             
-            followButton.topAnchor.constraint(equalTo: topRectangle.topAnchor, constant: 18)
+            followButtonLabel.centerYAnchor.constraint(equalTo: followButtonBackground.centerYAnchor)
         
         ])
     }

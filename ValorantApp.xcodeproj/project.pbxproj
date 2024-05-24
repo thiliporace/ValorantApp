@@ -23,6 +23,7 @@
 		8F689A792BF3D4E000B67F5E /* FollowingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A782BF3D4E000B67F5E /* FollowingEntity.swift */; };
 		8F689A7B2BF3D63800B67F5E /* FollowingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7A2BF3D63800B67F5E /* FollowingModel.swift */; };
 		8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */; };
+		8FC8E8762C01051C00A6A1C2 /* CapsuleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E8752C01051C00A6A1C2 /* CapsuleImage.swift */; };
 		8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */; };
 		8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */; };
 		8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */; };
@@ -32,7 +33,6 @@
 		8FDC53F52BFE619200F2FCD4 /* FollowingViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53F42BFE619200F2FCD4 /* FollowingViewDataSource.swift */; };
 		8FDC53F72BFE619C00F2FCD4 /* FollowingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53F62BFE619C00F2FCD4 /* FollowingViewDelegate.swift */; };
 		8FDC53F92BFE630000F2FCD4 /* SmallFollowingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53F82BFE630000F2FCD4 /* SmallFollowingViewCell.swift */; };
-		8FDC53FB2BFE81F800F2FCD4 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53FA2BFE81F800F2FCD4 /* CapsuleButton.swift */; };
 		8FDC53FF2BFE85A800F2FCD4 /* +UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53FE2BFE85A800F2FCD4 /* +UIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +55,7 @@
 		8F689A782BF3D4E000B67F5E /* FollowingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingEntity.swift; sourceTree = "<group>"; };
 		8F689A7A2BF3D63800B67F5E /* FollowingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingModel.swift; sourceTree = "<group>"; };
 		8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewCell.swift; sourceTree = "<group>"; };
+		8FC8E8752C01051C00A6A1C2 /* CapsuleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleImage.swift; sourceTree = "<group>"; };
 		8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDataSource.swift; sourceTree = "<group>"; };
 		8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDelegate.swift; sourceTree = "<group>"; };
 		8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewCell.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		8FDC53F42BFE619200F2FCD4 /* FollowingViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewDataSource.swift; sourceTree = "<group>"; };
 		8FDC53F62BFE619C00F2FCD4 /* FollowingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewDelegate.swift; sourceTree = "<group>"; };
 		8FDC53F82BFE630000F2FCD4 /* SmallFollowingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallFollowingViewCell.swift; sourceTree = "<group>"; };
-		8FDC53FA2BFE81F800F2FCD4 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		8FDC53FE2BFE85A800F2FCD4 /* +UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIButton.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,7 +160,7 @@
 				8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */,
 				8FDC53F22BFE618600F2FCD4 /* BigFollowingViewCell.swift */,
 				8FDC53F82BFE630000F2FCD4 /* SmallFollowingViewCell.swift */,
-				8FDC53FA2BFE81F800F2FCD4 /* CapsuleButton.swift */,
+				8FC8E8752C01051C00A6A1C2 /* CapsuleImage.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -270,6 +270,7 @@
 				8F689A662BF3CDFD00B67F5E /* FollowingViewController.swift in Sources */,
 				8F689A642BF3CDF400B67F5E /* LiveViewController.swift in Sources */,
 				8FDC53F32BFE618600F2FCD4 /* BigFollowingViewCell.swift in Sources */,
+				8FC8E8762C01051C00A6A1C2 /* CapsuleImage.swift in Sources */,
 				8F689A6A2BF3D0EF00B67F5E /* UpcomingMatchEntity.swift in Sources */,
 				8F689A792BF3D4E000B67F5E /* FollowingEntity.swift in Sources */,
 				8F689A6C2BF3D0FB00B67F5E /* UpcomingMatchModel.swift in Sources */,
@@ -277,7 +278,6 @@
 				8FDC53F52BFE619200F2FCD4 /* FollowingViewDataSource.swift in Sources */,
 				8F689A4D2BF3CADF00B67F5E /* SceneDelegate.swift in Sources */,
 				8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */,
-				8FDC53FB2BFE81F800F2FCD4 /* CapsuleButton.swift in Sources */,
 				8F689A7B2BF3D63800B67F5E /* FollowingModel.swift in Sources */,
 				8F689A732BF3D37000B67F5E /* LiveMatchModel.swift in Sources */,
 				8FDC53FF2BFE85A800F2FCD4 /* +UIButton.swift in Sources */,
@@ -429,8 +429,7 @@
 				INFOPLIST_FILE = ValorantApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -438,9 +437,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thiagoliporace.ValorantApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,8 +458,7 @@
 				INFOPLIST_FILE = ValorantApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,9 +466,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thiagoliporace.ValorantApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

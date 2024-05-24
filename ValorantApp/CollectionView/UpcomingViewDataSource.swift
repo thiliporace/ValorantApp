@@ -27,7 +27,11 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         let messagePrefix = String(messageSplit.first ?? "")
         let messageSufix = String(messageSplit.last ?? "")
         let dateSufix = messageSufix.split(separator: ":")
-        let newDateSufix = String(dateSufix[0] + ":" + dateSufix[1])
+        
+        let timeSubtracted = Int(dateSufix[0])! - 3
+        let newTime = String(timeSubtracted)
+        
+        let newDateSufix = String(newTime + ":" + dateSufix[1])
         
         cell.set(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
 //        cell.backgroundColor = .yellow

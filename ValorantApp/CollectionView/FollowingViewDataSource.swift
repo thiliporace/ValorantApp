@@ -10,7 +10,6 @@ import UIKit
 
 class FollowingViewDataSource: NSObject, UICollectionViewDataSource{
     
-    
     var matches: [FollowingSegment]
     
     init(matches: [FollowingSegment]) {
@@ -25,6 +24,8 @@ class FollowingViewDataSource: NSObject, UICollectionViewDataSource{
         let match = self.matches[indexPath.row]
         
         cell.set(team_label: match.team, rank: match.rank, region: match.country, last_played: match.lastPlayed)
+        
+//        cell.addButtonLabel(followbuttonlabel: "Follow")
         
         cell.isUserInteractionEnabled = true
 
