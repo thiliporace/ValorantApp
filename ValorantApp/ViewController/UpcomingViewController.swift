@@ -60,7 +60,7 @@ class UpcomingViewController: UIViewController {
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.upcomingViewDataSource = UpcomingViewDataSource(matches: matches)
-        self.upcomingViewDelegate = UpcomingViewDelegate()
+        self.upcomingViewDelegate = UpcomingViewDelegate(matches: matches, dataSource: upcomingViewDataSource)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -73,6 +73,8 @@ class UpcomingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        requestPermission()
         
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         
@@ -110,6 +112,16 @@ class UpcomingViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
     
+    func requestPermission(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { sucess, error in
+            if sucess {
+                print("All set")
+            }else if let error = error{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func receiveUpcomingMatches(){
         Task {
             await upcomingMatchModel.getMatches { error in
@@ -120,6 +132,7 @@ class UpcomingViewController: UIViewController {
                         if (!self.didApplyFilter){
                             self.matches = self.upcomingMatchModel.upcomingMatches
                             self.upcomingViewDataSource.matches = self.matches
+                            self.upcomingViewDelegate.matches = self.matches
                             self.popupButton.menu = self.createActions()
                             self.collectionView.reloadData()
                         } else {
@@ -132,6 +145,7 @@ class UpcomingViewController: UIViewController {
                             self.matches = newMatchesArray
                             print(self.matches.count)
                             self.upcomingViewDataSource.matches = self.matches
+                            self.upcomingViewDelegate.matches = self.matches
                             self.collectionView.reloadData()
                         }
                     }

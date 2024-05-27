@@ -29,20 +29,16 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         let dateSufix = messageSufix.split(separator: ":")
         
         var timeSubtracted = Int(dateSufix[0])! - 3
-        switch timeSubtracted{
-        case -3:
-            timeSubtracted = 21
-        case -2:
-            timeSubtracted = 22
-        case -1:
-            timeSubtracted = 23
-        default: 
-            break
+        if(timeSubtracted <= -1){
+            let difference = 24 + timeSubtracted
+            timeSubtracted = difference
         }
         
         let newTime = String(timeSubtracted)
         
         let newDateSufix = String(newTime + ":" + dateSufix[1])
+        
+        collectionView.allowsMultipleSelection = false
         
         cell.set(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
 //        cell.backgroundColor = .yellow
