@@ -62,7 +62,7 @@ class FollowingViewController: UIViewController {
 
     internal override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.followingViewDataSource = FollowingViewDataSource(matches: matches)
-        self.followingViewDelegate = FollowingViewDelegate()
+        self.followingViewDelegate = FollowingViewDelegate(dataSource: followingViewDataSource)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -113,37 +113,34 @@ class FollowingViewController: UIViewController {
                     if let error = error {
                         print(error)
                     } else {
-                        //Esse if roda so no ultimo item do for, então a tela não fica se atualizando toda hora
-//                        if (index == regions.count - 1) {
-                            DispatchQueue.main.async {
-                                if (!self.didApplyFilter){
+                        DispatchQueue.main.async {
+                            if (!self.didApplyFilter){
+                                self.matches = self.followingMatchModel.followingTeams
+                                self.followingViewDataSource.matches = self.matches
+                                self.popupButton.menu = self.createActions()
+                                self.collectionView.reloadData()
+                            }
+                            else{
+                                if (region == self.regionName){
+                                    self.matches.removeAll()
                                     self.matches = self.followingMatchModel.followingTeams
                                     self.followingViewDataSource.matches = self.matches
-                                    self.popupButton.menu = self.createActions()
                                     self.collectionView.reloadData()
+                                    print(self.matches.count)
                                 }
-                                else{
-                                    if (region == self.regionName){
-                                        self.matches.removeAll()
-                                        self.matches = self.followingMatchModel.followingTeams
-                                        self.followingViewDataSource.matches = self.matches
-                                        self.collectionView.reloadData()
-                                        print(self.matches.count)
-                                    }
-                                    
-                                    
-                                }
+                                
+                                
                             }
-//                        }
+                        }
                         
                     }
                 }
             }
         }
-       
-            if(!hasError) {
-                
-            }
+        
+        if(!hasError) {
+            
+        }
         
     }
     

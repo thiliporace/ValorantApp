@@ -7,12 +7,13 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
+class FavoriteViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    var matches: [UpcomingSegment]
+    var matches: [FavoriteModel]
     
-    init(matches: [UpcomingSegment]) {
+    init(matches: [FavoriteModel]) {
         self.matches = matches
     }
     
@@ -22,25 +23,14 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         }
       
         let match = self.matches[indexPath.row]
-        let timestamp = self.matches[indexPath.row].unixTimestamp
-        let messageSplit = timestamp.split(separator: " ")
-        let messagePrefix = String(messageSplit.first ?? "")
-        let messageSufix = String(messageSplit.last ?? "")
-        let dateSufix = messageSufix.split(separator: ":")
-        
-        var timeSubtracted = Int(dateSufix[0])! - 3
-        if(timeSubtracted <= -1){
-            let difference = 24 + timeSubtracted
-            timeSubtracted = difference
-        }
-        
-        let newTime = String(timeSubtracted)
-        
-        let newDateSufix = String(newTime + ":" + dateSufix[1])
         
         collectionView.allowsMultipleSelection = false
         
-        cell.set(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
+        cell.set(seriesLabel: match.seriesLabel ?? "", date: match.date ?? "", country_flag1: match.country_flag1 ?? "", country_flag2: match.country_flag2 ?? "", team_name1: match.team_name1 ?? "", team_name2: match.team_name2 ?? "", game_time: match.game_time ?? "", time_from_now: match.time_from_now ?? "")
+        
+//        cell.bellButton.image = UIImage(systemName: "trash.fill")
+        cell.bellButton.image = UIImage(systemName: "")
+        cell.bellButton.tintColor = .mainRed
 //        cell.backgroundColor = .yellow
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true

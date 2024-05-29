@@ -11,6 +11,8 @@ class UpcomingViewCell: UICollectionViewCell {
     
     static let identifier = "UpcomingViewCell"
     
+    var isSelectedBool: Bool = false
+    
     var seriesLabel: UILabel = {
         let label = UILabel()
         
@@ -126,6 +128,27 @@ class UpcomingViewCell: UICollectionViewCell {
         return image
     }()
     
+    var bellButton: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+        
+    }()
+    
+//    var bellButton: UIButton = {
+//        let button = UIButton()
+//        
+//        button.setImage(UIImage(systemName: "bell", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: UIControl.State.normal)
+//        button.tintColor = .white
+//        button.setTitleColor(UIColor.yellow, for: UIControl.State.selected)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        return button
+//    }()
+    
     func addEmoji(string: String) -> String{
         var newString: String = ""
         switch string{
@@ -185,10 +208,21 @@ class UpcomingViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func reloadImage(){
+        if(isSelectedBool){
+            bellButton.image = UIImage(systemName: "bell.fill")
+        }
+        else{
+            bellButton.image = UIImage(systemName: "bell")
+        }
+        
+    }
+    
     func addElements(){
         addTopRectangle()
         addBottomRectangle()
         addSeriesLabel()
+        addBellImage()
         addDateLabel()
         addCountryFlag1()
         addTeamName1()
@@ -246,12 +280,31 @@ class UpcomingViewCell: UICollectionViewCell {
         ])
     }
     
+    func addBellImage(){
+        bellButton.image = UIImage(systemName: "bell")
+//        bellButton.image = UIImage(systemName: isSelectedBool ? "bell.fill" : "bell")
+        
+        topRectangle.addSubview(bellButton)
+        
+        NSLayoutConstraint.activate([
+            
+            bellButton.widthAnchor.constraint(equalToConstant: 17),
+            
+            bellButton.heightAnchor.constraint(equalToConstant: 18.7),
+        
+            bellButton.topAnchor.constraint(equalTo: seriesLabel.topAnchor, constant: -2),
+            
+            bellButton.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -8)
+        
+        ])
+    }
+    
     func addDateLabel(){
         topRectangle.addSubview(date)
         
         NSLayoutConstraint.activate([
             
-            date.trailingAnchor.constraint(equalTo: topRectangle.trailingAnchor, constant: -8),
+            date.trailingAnchor.constraint(equalTo: bellButton.leadingAnchor, constant: -10),
             
             date.topAnchor.constraint(equalTo: seriesLabel.topAnchor),
             

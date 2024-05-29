@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FollowingViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
+class FollowingViewDataSource: NSObject, UICollectionViewDataSource{
     
     var matches: [FollowingSegment]
     
@@ -24,16 +24,10 @@ class FollowingViewDataSource: NSObject, UICollectionViewDataSource, UICollectio
         let match = self.matches[indexPath.row]
         
         cell.set(team_label: match.team, rank: match.rank, region: match.country, last_played: match.lastPlayed)
+        
+//        cell.addButtonLabel(followbuttonlabel: "Follow")
+        
         cell.isUserInteractionEnabled = true
-        
-        cell.followButton.updateFocusIfNeeded()
-        
-        cell.followButton.tag = indexPath.row
-//        cell.followButton.addTarget(self, action: #selector(self.onButtonPress(sender: )), for: .touchUpInside)
-        cell.onButtonPressAction = {
-            () in
-            print("Tapped in cell", indexPath)
-        }
 
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
@@ -43,6 +37,7 @@ class FollowingViewDataSource: NSObject, UICollectionViewDataSource, UICollectio
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return matches.count
   }
+    
     
     
 }
