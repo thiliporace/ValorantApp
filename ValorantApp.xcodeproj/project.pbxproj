@@ -24,6 +24,11 @@
 		8F689A7B2BF3D63800B67F5E /* FollowingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7A2BF3D63800B67F5E /* FollowingModel.swift */; };
 		8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */; };
 		8FC8E8762C01051C00A6A1C2 /* CapsuleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E8752C01051C00A6A1C2 /* CapsuleImage.swift */; };
+		8FC8E8782C0641A700A6A1C2 /* FavoriteMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E8772C0641A700A6A1C2 /* FavoriteMatchesViewController.swift */; };
+		8FC8E87B2C06422600A6A1C2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E87A2C06422600A6A1C2 /* DataController.swift */; };
+		8FC8E8812C0642CD00A6A1C2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E87F2C0642CD00A6A1C2 /* Model.xcdatamodeld */; };
+		8FC8E8852C06469E00A6A1C2 /* FavoriteViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E8842C06469E00A6A1C2 /* FavoriteViewDataSource.swift */; };
+		8FC8E8872C06474A00A6A1C2 /* FavoriteViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8E8862C06474A00A6A1C2 /* FavoriteViewDelegate.swift */; };
 		8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */; };
 		8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */; };
 		8FDC53ED2BFBEB7200F2FCD4 /* LiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */; };
@@ -56,6 +61,11 @@
 		8F689A7A2BF3D63800B67F5E /* FollowingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingModel.swift; sourceTree = "<group>"; };
 		8F689A7D2BF3EF5400B67F5E /* UpcomingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewCell.swift; sourceTree = "<group>"; };
 		8FC8E8752C01051C00A6A1C2 /* CapsuleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleImage.swift; sourceTree = "<group>"; };
+		8FC8E8772C0641A700A6A1C2 /* FavoriteMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMatchesViewController.swift; sourceTree = "<group>"; };
+		8FC8E87A2C06422600A6A1C2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		8FC8E8802C0642CD00A6A1C2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8FC8E8842C06469E00A6A1C2 /* FavoriteViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewDataSource.swift; sourceTree = "<group>"; };
+		8FC8E8862C06474A00A6A1C2 /* FavoriteViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewDelegate.swift; sourceTree = "<group>"; };
 		8FDC53E12BF5541B00F2FCD4 /* UpcomingViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDataSource.swift; sourceTree = "<group>"; };
 		8FDC53E32BF557E800F2FCD4 /* UpcomingViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewDelegate.swift; sourceTree = "<group>"; };
 		8FDC53EC2BFBEB7200F2FCD4 /* LiveViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +92,7 @@
 		8F689A3E2BF3CADF00B67F5E = {
 			isa = PBXGroup;
 			children = (
+				8FC8E87F2C0642CD00A6A1C2 /* Model.xcdatamodeld */,
 				8F689A492BF3CADF00B67F5E /* ValorantApp */,
 				8F689A482BF3CADF00B67F5E /* Products */,
 			);
@@ -98,6 +109,7 @@
 		8F689A492BF3CADF00B67F5E /* ValorantApp */ = {
 			isa = PBXGroup;
 			children = (
+				8FC8E8792C06421900A6A1C2 /* Controllers */,
 				8FDC53FC2BFE859000F2FCD4 /* Extensions */,
 				8FDC53E02BF553F600F2FCD4 /* CollectionView */,
 				8F689A7C2BF3EF3600B67F5E /* Cells */,
@@ -121,6 +133,7 @@
 				8F689A612BF3CDE500B67F5E /* UpcomingViewController.swift */,
 				8F689A632BF3CDF400B67F5E /* LiveViewController.swift */,
 				8F689A652BF3CDFD00B67F5E /* FollowingViewController.swift */,
+				8FC8E8772C0641A700A6A1C2 /* FavoriteMatchesViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -165,6 +178,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		8FC8E8792C06421900A6A1C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8FC8E87A2C06422600A6A1C2 /* DataController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		8FDC53E02BF553F600F2FCD4 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +195,8 @@
 				8FDC53F02BFD325F00F2FCD4 /* LiveViewDelegate.swift */,
 				8FDC53F42BFE619200F2FCD4 /* FollowingViewDataSource.swift */,
 				8FDC53F62BFE619C00F2FCD4 /* FollowingViewDelegate.swift */,
+				8FC8E8842C06469E00A6A1C2 /* FavoriteViewDataSource.swift */,
+				8FC8E8862C06474A00A6A1C2 /* FavoriteViewDelegate.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -262,12 +285,16 @@
 				8FDC53E22BF5541B00F2FCD4 /* UpcomingViewDataSource.swift in Sources */,
 				8FDC53EF2BFD325600F2FCD4 /* LiveViewDataSource.swift in Sources */,
 				8F689A5F2BF3CCEA00B67F5E /* MainTabBarController.swift in Sources */,
+				8FC8E8812C0642CD00A6A1C2 /* Model.xcdatamodeld in Sources */,
 				8F689A622BF3CDE500B67F5E /* UpcomingViewController.swift in Sources */,
 				8FDC53F92BFE630000F2FCD4 /* SmallFollowingViewCell.swift in Sources */,
 				8FDC53E42BF557E800F2FCD4 /* UpcomingViewDelegate.swift in Sources */,
 				8F689A712BF3D35D00B67F5E /* LiveMatchEntity.swift in Sources */,
+				8FC8E8852C06469E00A6A1C2 /* FavoriteViewDataSource.swift in Sources */,
 				8FDC53F72BFE619C00F2FCD4 /* FollowingViewDelegate.swift in Sources */,
 				8F689A662BF3CDFD00B67F5E /* FollowingViewController.swift in Sources */,
+				8FC8E87B2C06422600A6A1C2 /* DataController.swift in Sources */,
+				8FC8E8872C06474A00A6A1C2 /* FavoriteViewDelegate.swift in Sources */,
 				8F689A642BF3CDF400B67F5E /* LiveViewController.swift in Sources */,
 				8FDC53F32BFE618600F2FCD4 /* BigFollowingViewCell.swift in Sources */,
 				8FC8E8762C01051C00A6A1C2 /* CapsuleImage.swift in Sources */,
@@ -280,6 +307,7 @@
 				8F689A7E2BF3EF5400B67F5E /* UpcomingViewCell.swift in Sources */,
 				8F689A7B2BF3D63800B67F5E /* FollowingModel.swift in Sources */,
 				8F689A732BF3D37000B67F5E /* LiveMatchModel.swift in Sources */,
+				8FC8E8782C0641A700A6A1C2 /* FavoriteMatchesViewController.swift in Sources */,
 				8FDC53FF2BFE85A800F2FCD4 /* +UIButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +525,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8FC8E87F2C0642CD00A6A1C2 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8FC8E8802C0642CD00A6A1C2 /* Model.xcdatamodel */,
+			);
+			currentVersion = 8FC8E8802C0642CD00A6A1C2 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = "/Users/thiagoliporace/Documents/codigos apple academy/ValorantApp/Model.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F689A3F2BF3CADF00B67F5E /* Project object */;
 }

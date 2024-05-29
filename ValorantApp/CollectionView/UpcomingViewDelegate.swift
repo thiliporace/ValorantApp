@@ -38,6 +38,7 @@ class UpcomingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionView
         return UIEdgeInsets(top: 80, left: 0, bottom: 20, right: 0)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.allowsMultipleSelection = false
         
@@ -80,6 +81,9 @@ class UpcomingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionView
             if !(cell.isSelectedBool){
                 cell.bellButton.image = UIImage(systemName: "bell.fill")
                 cell.isSelectedBool = true
+                DataController.shared.createMatch(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
+                
+                DataController.shared.saveContext()
                 
                 UNUserNotificationCenter.current().add(request)
             }
@@ -95,48 +99,6 @@ class UpcomingViewDelegate: NSObject, UICollectionViewDelegate, UICollectionView
         }
 
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        collectionView.allowsMultipleSelection = false
-//        
-//        if let cell = collectionView.cellForItem(at: indexPath) as? UpcomingViewCell {
-//            
-//            let match = self.matches[indexPath.row]
-//            let timestamp = self.matches[indexPath.row].unixTimestamp
-//            let messageSplit = timestamp.split(separator: " ")
-//            let messagePrefix = String(messageSplit.first ?? "")
-//            let messageSufix = String(messageSplit.last ?? "")
-//            let dateSufix = messageSufix.split(separator: ":")
-//            
-//            let daySplit = messagePrefix.split(separator: "-")
-//            let day = daySplit[2]
-//            
-//            var timeSubtracted = Int(dateSufix[0])! - 3
-//            switch timeSubtracted{
-//            case -3:
-//                timeSubtracted = 21
-//            case -2:
-//                timeSubtracted = 22
-//            case -1:
-//                timeSubtracted = 23
-//            default:
-//                break
-//            }
-//            
-//            let newTime = String(timeSubtracted)
-//            
-//            let newDateSufix = String(newTime + ":" + dateSufix[1])
-//            
-//            let request: UNNotificationRequest
-//            
-//            if (cell.isSelectedBool){
-//                cell.bellButton.image = UIImage(systemName: "bell")
-//                cell.isSelectedBool = false
-//                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [String(newTime + dateSufix[1])])
-//            }
-//            
-//        }
-//    }
     
     
     func sendNotification(team1: String, team2: String, championship: String, series: String, day: Int, hour: Int, minutes: Int) -> UNNotificationRequest{

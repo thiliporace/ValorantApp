@@ -29,8 +29,8 @@ class MainTabBarController: UITabBarController {
     }
     
     func configTabbars(){
-        let upcomingViewController = UINavigationController(rootViewController: UpcomingViewController())
         
+        let upcomingViewController = UINavigationController(rootViewController: UpcomingViewController())
         
         //Colocando as configuracoes do item da tabbar
         upcomingViewController.tabBarItem.title = "Upcoming"
@@ -43,13 +43,19 @@ class MainTabBarController: UITabBarController {
         liveViewController.tabBarItem.image = UIImage(systemName: "record.circle")
         liveViewController.tabBarItem.selectedImage = UIImage(systemName: "record.circle.fill")
         
+        let favoriteMatchesViewController = UINavigationController(rootViewController: FavoriteMatchesViewController())
+        
+        favoriteMatchesViewController.tabBarItem.title = "Notifications"
+        favoriteMatchesViewController.tabBarItem.image = UIImage(systemName: "star")
+        favoriteMatchesViewController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")
+        
         let followingViewController = UINavigationController(rootViewController: FollowingViewController())
         
         followingViewController.tabBarItem.title = "Following"
-        followingViewController.tabBarItem.image = UIImage(systemName: "star")
-        followingViewController.tabBarItem.selectedImage = UIImage(systemName: "star.fill")
+        followingViewController.tabBarItem.image = UIImage(systemName: "newspaper")
+        followingViewController.tabBarItem.selectedImage = UIImage(systemName: "newspaper.fill")
         
-        self.setViewControllers([upcomingViewController, liveViewController, followingViewController], animated: true)
+        self.setViewControllers([upcomingViewController, liveViewController, favoriteMatchesViewController, followingViewController], animated: true)
         
     }
 

@@ -7,9 +7,18 @@
 
 import UIKit
 
+protocol SaveToFavorite: AnyObject {
+    func saveToFavorite(matches: [FavoriteModel])
+}
+
 class UpcomingViewController: UIViewController {
     var upcomingViewDataSource: UpcomingViewDataSource
     var upcomingViewDelegate: UpcomingViewDelegate
+    var saveToFavoriteProtocol: SaveToFavorite?
+    
+    // Vamos dizer que salva
+    // var matches.append
+    // saveToFavoriteProtocol?.saveToFavorite(matches: matches)
     
     let receiveMatches: Bool = false
     
@@ -68,7 +77,6 @@ class UpcomingViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
    
     override func viewDidLoad() {
         

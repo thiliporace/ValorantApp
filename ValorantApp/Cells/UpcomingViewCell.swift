@@ -208,15 +208,15 @@ class UpcomingViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func reloadImage(){
-//        if(isSelectedBool){
-//            bellButton.image = UIImage(systemName: "bell.fill")
-//        }
-//        else{
-//            bellButton.image = UIImage(systemName: "bell")
-//        }
-//        
-//    }
+    func reloadImage(){
+        if(isSelectedBool){
+            bellButton.image = UIImage(systemName: "bell.fill")
+        }
+        else{
+            bellButton.image = UIImage(systemName: "bell")
+        }
+        
+    }
     
     func addElements(){
         addTopRectangle()
