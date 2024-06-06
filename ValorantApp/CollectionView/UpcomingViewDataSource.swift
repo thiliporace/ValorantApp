@@ -41,10 +41,10 @@ class UpcomingViewDataSource: NSObject, UICollectionViewDataSource, UICollection
         collectionView.allowsMultipleSelection = false
         
         cell.set(seriesLabel: match.matchSeries, date: messagePrefix, country_flag1: match.flag1, country_flag2: match.flag2, team_name1: match.team1, team_name2: match.team2, game_time: newDateSufix, time_from_now: match.timeUntilMatch)
-//        cell.backgroundColor = .yellow
+
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
-//        cell.addSubview(upcomingCard)
+        
       return cell
     }
     

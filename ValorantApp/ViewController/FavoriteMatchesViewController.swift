@@ -7,12 +7,7 @@
 
 import UIKit
 
-class FavoriteMatchesViewController: UIViewController, SaveToFavorite {
-    func saveToFavorite(matches: [FavoriteModel]) {
-        // Você vai atribuir o dataSource e salvar no CoreData
-        // self.matches = matches
-        // self.favoriteViewDataSource = FavoriteViewDataSource(matches: matches)
-    }
+class FavoriteMatchesViewController: UIViewController {
     
     var favoriteViewDataSource: FavoriteViewDataSource
     var favoriteViewDelegate: FavoriteViewDelegate
